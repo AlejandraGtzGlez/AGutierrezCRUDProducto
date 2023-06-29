@@ -1,0 +1,49 @@
+﻿@model ML.Producto
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 ">
+            @Html.ActionLink("Agregar", "Form", "Producto", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-responsive">
+                <thead class="thead-dark">
+                    <tr>
+                        <td>Editar</td>
+                        <td class="hidden">IdProducto</td>
+                        <td>Nombre</td>
+                        <td>Descripcion </td>
+                        <td>Stock</td>
+                        <td>Eliminar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Producto producto in Model.Productos)
+                    {
+                        <tr>
+                            <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Producto", new { IdProducto = producto.IdProducto })"></a></td>
+                            <td class="hidden">@producto.IdProducto</td>
+                            <td>@producto.Nombre</td>
+                            <td>@producto.Descripcion</td>
+                            <td>@producto.Stock</td>
+                            <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-erase" href="@Url.Action("Delete", "Producto", new { IdProducto = producto.IdProducto })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
